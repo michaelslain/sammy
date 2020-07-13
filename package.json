@@ -6,11 +6,12 @@
     "author": "m00chle",
     "license": "MIT",
     "scripts": {
+        "start": "node .",
         "install-client": "cd client && yarn",
         "install-all": "yarn && yarn install-client",
-        "start": "node .",
         "server": "nodemon .",
-        "client": "cd client && yarn start"
+        "client": "cd client && yarn start",
+        "heroku-postbuild": "heroku config:set YARN_PRODUCTION=true && cd client && yarn && yarn build"
     },
     "dependencies": {
         "cors": "^2.8.5",
