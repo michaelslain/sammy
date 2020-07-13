@@ -1,0 +1,66 @@
+$accent: #7289da;
+
+.home {
+    .hero {
+        width: 60vw;
+        margin: auto;
+        margin-top: 200px;
+        position: relative;
+
+        .background {
+            position: absolute;
+            opacity: 0.1;
+            width: 45vw;
+            right: -5vw;
+            top: 5vh;
+            -webkit-user-select: none;
+            animation: slideAnimation 0.5s ease-in-out;
+
+            @keyframes slideAnimation {
+                from {
+                    right: 100vw;
+                    transform: rotate(270deg);
+                }
+                to {
+                    right: -5vw;
+                    transform: rotate(360deg);
+                }
+            }
+        }
+
+        .heading {
+            color: white;
+            font-size: 80px;
+            font-weight: normal;
+
+            .special {
+                color: $accent;
+                font-weight: bold;
+            }
+        }
+
+        .cta {
+            display: inline-block;
+            color: white;
+            padding: 15px;
+            background: $accent;
+            border-radius: 1em;
+            font-size: 20px;
+            margin-top: 50px;
+            border-width: 5px;
+            border-color: $accent;
+            border-style: solid;
+            margin-right: 20px;
+            transition: all 0.1s ease-in-out;
+
+            &:hover {
+                background: transparent;
+                border-color: transparent;
+            }
+
+            &.clear {
+                background: transparent;
+            }
+        }
+    }
+}

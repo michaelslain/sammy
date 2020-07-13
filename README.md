@@ -9,10 +9,20 @@
 
 **Dev:**
 
-```yaml
-# Install dependecies
+```bash
+# Installs client and server dependencies
+yarn install-all
+
+# Install server dependencies only
 yarn
 
-# Start bot
-yarn dev
+# Install client dependencies only
+yarn install-client
+
+# Run server only
+yarn server
+
+# Run client only
+yarn client
+
 ```
