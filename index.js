@@ -12,11 +12,11 @@ express()
 
     // ROUTES
     .get('*', (req, res) => {
-        if (isProduction) {
-            const path = './client/build/index.html'
-            res.sendFile(path)
-            return
-        }
+        // if (isProduction) {
+        //     const path = './client/build/index.html'
+        //     res.sendFile(path)
+        //     return
+        // }
 
         res.send('Welcome!')
     })
