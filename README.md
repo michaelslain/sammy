@@ -10,19 +10,13 @@
 **Dev:**
 
 ```bash
-# Installs client and server dependencies
-yarn install-all
-
-# Install server dependencies only
+# Install dependencies
 yarn
 
-# Install client dependencies only
-yarn install-client
+# Run server with hot reload
+yarn dev
 
-# Run server only
-yarn server
-
-# Run client only
-yarn client
+# Run server without hot reload
+yarn start
 
 ```

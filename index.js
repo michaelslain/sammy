@@ -1,25 +1,79 @@
-import express from 'express'
-import cors from 'cors'
-import './bot.js'
+import Discord from 'discord.js'
+import env from 'dotenv'
+import { Worker } from 'worker_threads'
 
-const port = process.env.PORT || 5000
-const isProduction = process.env.PORT != null
+env.config()
 
-express()
-    // MIDDLEWARES
-    .use(cors())
-    .use(express.static('client'))
+const bot = new Discord.Client()
+const token = process.env.TOKEN
 
-    // ROUTES
-    .get('*', (req, res) => {
-        // if (isProduction) {
-        //     const path = './client/build/index.html'
-        //     res.sendFile(path)
-        //     return
-        // }
+const error = text => `:sushi: \`${text}\``
 
-        res.send('Welcome!')
+const answer = text => {
+    const fish = () => {
+        const random = Math.floor(Math.random() * 2 + 1)
+
+        if (random === 1) return ':fish:'
+        else return ':tropical_fish:'
+    }
+
+    return `${fish()} \`${text}\``
+}
+
+bot
+    // checks if server has started
+    .on('ready', () => {
+        console.log('Sammy is online')
     })
+    // handles messages
+    .on('message', msg => {
+        // creates async thread
+        return new Promise(resolve => {
+            try {
+                const args = msg.content.split('!run')
 
-    // Starting server
-    .listen(port, () => console.log(`Server is running on ${port}`))
+                if (args[0] !== '') {
+                    resolve()
+                    return
+                }
+
+                const code = args[1]
+
+                const path = './compile.js'
+                const thread = new Worker(path)
+
+                // times out thread to prevent while loops
+                const timeout = setTimeout(() => {
+                    msg.channel.send(
+                        error(
+                            'Code took too long to run, probably using while true loops :D'
+                        )
+                    )
+                    thread.terminate()
+                }, 10000)
+
+                thread.postMessage({ code })
+
+                thread.once('message', message => {
+                    msg.channel.send(message)
+                    thread.terminate()
+                })
+                thread.on('error', err => {
+                    console.error(err)
+                    msg.channel.send(
+                        error('There was an error with the server')
+                    )
+                    thread.terminate()
+                })
+                thread.once('exit', () => {
+                    clearTimeout(timeout)
+                    resolve()
+                })
+            } catch (err) {
+                console.error(err)
+                resolve()
+            }
+        })
+    })
+    // logs into discord bot profile
+    .login(token)

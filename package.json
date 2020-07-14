@@ -7,16 +7,11 @@
     "license": "MIT",
     "scripts": {
         "start": "node .",
-        "install-client": "cd client && yarn",
-        "install-all": "yarn && yarn install-client",
-        "server": "nodemon .",
-        "client": "cd client && yarn start"
+        "dev": "nodemon ."
     },
     "dependencies": {
-        "cors": "^2.8.5",
         "discord.js": "^12.2.0",
-        "dotenv": "^8.2.0",
-        "express": "^4.17.1"
+        "dotenv": "^8.2.0"
     },
     "devDependencies": {
         "nodemon": "^2.0.4"
