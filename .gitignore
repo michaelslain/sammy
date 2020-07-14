@@ -1,5 +1,2 @@
 /node_modules
 .env
-todo.txt
-/client/yarn-error.log
-/client/node_modules
