@@ -10,8 +10,7 @@
         "install-client": "cd client && yarn",
         "install-all": "yarn && yarn install-client",
         "server": "nodemon .",
-        "client": "cd client && yarn start",
-        "heroku-postbuild": "heroku config:set YARN_PRODUCTION=true && cd client && yarn && yarn build"
+        "client": "cd client && yarn start"
     },
     "dependencies": {
         "cors": "^2.8.5",
