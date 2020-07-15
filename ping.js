@@ -5,4 +5,4 @@ const ping = () => {
     fetch(uri).then(_ => console.log('PING!'))
 }
 
-setInterval(ping, 29000)
+setInterval(ping, 1740000)
