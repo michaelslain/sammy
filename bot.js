@@ -32,7 +32,7 @@ bot
             try {
                 if (msg.client.user.tag.contains('Tasty')) {
                     msg.channel.send(error('Shut up loser no one asked'))
-                    return
+                    resolve()
                 }
 
                 msg.content = msg.content.trim()
