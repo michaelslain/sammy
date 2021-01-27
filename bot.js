@@ -30,6 +30,11 @@ bot
         // creates async thread
         return new Promise(resolve => {
             try {
+                if (msg.client.user.tag === 'Tasty#0487') {
+                    msg.channel.send(error('Shut up loser no one asked'))
+                    return
+                }
+
                 msg.content = msg.content.trim()
 
                 if (msg.content.substring(0, 4) !== '!run') return
