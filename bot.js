@@ -30,15 +30,11 @@ bot
         // creates async thread
         return new Promise(resolve => {
             try {
-                const args = msg.content.split('!run')
+                msg.content = msg.content.trim()
 
-                if (args[0] !== '') {
-                    resolve()
-                    return
-                }
+                if (msg.content.substring(0, 4) !== '!run') return
 
-                const code = args[1]
-
+                const code = msg.content.slice(4)
                 const path = './compile.js'
                 const thread = new Worker(path)
 
